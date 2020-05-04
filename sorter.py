@@ -44,10 +44,12 @@ def sorting(src_dir, dst_dir):
                     print(f'The file {filename} does not have enough information. He will not be moved.')
                     continue
                 elif addfile.tag.title is None:
-                    new_path = os.path.join(dst_path, f'{addfile.tag.artist}', f'{addfile.tag.album}', f'{filename}')
+                    new_path = os.path.join(dst_path, f'{addfile.tag.artist.strip()}', f'{addfile.tag.album.strip()}',
+                                            f'{filename}')
                 else:
-                    new_path = os.path.join(dst_path, f'{addfile.tag.artist}', f'{addfile.tag.album}',
-                                            f'{addfile.tag.title} - {addfile.tag.artist} - {addfile.tag.album}.mp3')
+                    new_path = os.path.join(dst_path, f'{addfile.tag.artist.strip()}', f'{addfile.tag.album.strip()}',
+                                            f'{addfile.tag.title.strip()} - {addfile.tag.artist.strip()}'
+                                            f' - {addfile.tag.album.strip()}.mp3')
 
                 try:
                     os.renames(path, new_path)
