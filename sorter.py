@@ -54,7 +54,14 @@ def sorting(src_dir, dst_dir):
                 try:
                     os.renames(path, new_path)
                 except FileExistsError:
-                    os.replace(path, new_path)
+                    try:
+                        os.replace(path, new_path)
+                    except FileExistsError:
+                        print(f'The file {filename} caused an error occurred that could not overwrite the file.')
+                        access = False
+                    except PermissionError:
+                        print(f'The file {filename} caused an error access violation!')
+                        access = False
                 except PermissionError:
                     print('Access violation!')
                     access = False
